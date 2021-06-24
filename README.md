@@ -68,4 +68,4 @@ comming soon
 
 - monosspacing
 - commandline args
-- remake to ASCII
+- remake to_ASCII
