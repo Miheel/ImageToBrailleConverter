@@ -61,7 +61,7 @@ class PixleDataMatrix:
 
         return pixel_ascii_hash
 
-    def set_braille_char(self):
+    def set_braille_char(self, mono_flag):
         """sets the coresponding braille char to a pixel matrix by comparing the pixels light value
            and constructing a bit pattersn to represent a the unicode char"""
         str_rep = ""
@@ -89,7 +89,10 @@ class PixleDataMatrix:
 
         str_rep = ''.join([str(elem) for elem in temp_str_rep])
         #print(str_rep)
-        self.braille_char = [dot_rep for dot_rep in BRAILLE if dot_rep[0] == str_rep]
+        if str_rep == '000000' and mono_flag:
+            self.braille_char = [('001000', '⠄')]
+        else:
+            self.braille_char = [dot_rep for dot_rep in BRAILLE if dot_rep[0] == str_rep]
 
     def get_braille_char(self):
         """return a brail unicode char"""

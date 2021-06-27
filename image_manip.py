@@ -46,7 +46,7 @@ def extract_pixledata_matrix(image):
 			index_exists(row1, j), index_exists(row2, j), index_exists(row3, j),\
 			index_exists(row1, j + 1), index_exists(row2, j + 1), index_exists(row3, j + 1)))
 
-def pixle_to_braille(image):
+def pixle_to_braille(image, mono_flag):
     """Converts a pixle matrix to braille unicode"""
     extract_pixledata_matrix(image)
 
@@ -55,7 +55,7 @@ def pixle_to_braille(image):
     for pixle_object in pixle_OBJECT_LIST:
         #print(i, end = ", ")
 
-        pixle_object.set_braille_char()
+        pixle_object.set_braille_char(mono_flag)
 
         #print(str(i) + pixle_object.get_braille_bit_rep() + "," + pixle_object.get_braille_char())
         #print(str(i) + pixle_object.get_braille_char())

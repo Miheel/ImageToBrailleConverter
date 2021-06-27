@@ -1,7 +1,7 @@
 """Converts an image to Braille unicode
 
 Usage:
-    Image2Braille (<srcimg>) [--output=<File>] [--resize=<size>] ((-a | --ASCII) | (-b | --braille))
+    Image2Braille (<srcimg>) [options] ((-a | --ASCII) | (-b | --braille))
     Image2Braille -h | --help
     Image2Braille -v | --version
 
@@ -13,6 +13,7 @@ Options:
     -v --version            output version information and exit.
     -o --output=<File>      write result to FILE instead of standard output.
     -r --resize=<size>      image size in pixles.
+    -m --monospace          makes the out put monospaced.
     -a --ASCII              Converts an image to ASCII.
     -b --braille            Converts an image to unicode braille.
 """
@@ -51,6 +52,7 @@ def main():
         '--help' : Use(bool),
         '--version' : Use(bool),
         '--resize' : Or(None, Use(int), error='New size must be an integer'),
+        '--monospace' : Use(bool),
         '--ASCII' : Use(bool),
         '--braille' : Use(bool),
         '--output' : Or(None, Use(str)),
@@ -64,6 +66,7 @@ def main():
 
     image = args['<srcimg>']
     out_file_flag = False
+    monospace_flag = False
 
     #convert image to greyscale image
     greyscale_image = imgmanip.to_greyscale(image)
@@ -73,13 +76,17 @@ def main():
 	    #resize image
         greyscale_image = imgmanip.resize(greyscale_image, 100)
 
+    if args['--monospace']:
+        print('Image is monospaced')
+        monospace_flag = True
+
     if args['--ASCII']:
         print('image is ASCIIfied')
-        ascii_str = imgmanip.pixel_to_ascii(greyscale_image)
+        ascii_str = imgmanip.pixel_to_ascii(greyscale_image, monospace_flag)
     
     if args['--braille']:
         print('image is brailleified')
-        ascii_str = imgmanip.pixle_to_braille(greyscale_image)
+        ascii_str = imgmanip.pixle_to_braille(greyscale_image, monospace_flag)
 
     if args['--output']:
         print('Desination path', args['--output'])
