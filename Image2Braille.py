@@ -74,7 +74,7 @@ def main():
     if args['--resize']:
         print('Image is resized')
 	    #resize image
-        greyscale_image = imgmanip.resize(greyscale_image, 100)
+        greyscale_image = imgmanip.resize(greyscale_image, args['--resize'])
 
     if args['--monospace']:
         print('Image is monospaced')
