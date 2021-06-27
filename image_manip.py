@@ -3,7 +3,7 @@ image manipulation and data extraction
 """
 
 import math
-import pixle_data as PD
+import pixle_data_matrix as PD
 
 ASCII_CHARS = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]
 pixle_OBJECT_LIST = []
