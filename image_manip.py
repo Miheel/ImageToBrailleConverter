@@ -51,18 +51,11 @@ def pixle_to_braille(image, mono_flag):
     extract_pixledata_matrix(image)
 
     ascii_str = ""
-    #i = 0
+
     for pixle_object in pixle_OBJECT_LIST:
-        #print(i, end = ", ")
 
         pixle_object.set_braille_char(mono_flag)
 
-        #print(str(i) + pixle_object.get_braille_bit_rep() + "," + pixle_object.get_braille_char())
-        #print(str(i) + pixle_object.get_braille_char())
-        # if len(pixle_object.braille_char) < 1:
-            # print(i, end = "")
-            # print(pixle_object.braille_char)
-        # i = i + 1
         ascii_str += pixle_object.get_braille_char()
 
     return ascii_str
