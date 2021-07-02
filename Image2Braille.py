@@ -33,15 +33,15 @@ def write(file, file_bool, char_string):
         #write ascii image to stdio   
         print(char_string)    
 
-def parse_ascii_str(img_width, ascii_str):
-    ascii_str_len = len(ascii_str)
-    ascii_img = ''
+def parse_img_str(img_width, img_str):
+    img_str_len = len(img_str)
+    img = ''
 
     #Split the string based on width of the image   
-    for i in range(0, ascii_str_len, img_width//2):
-        ascii_img += ascii_str[i:i+img_width//2] + '\n'
+    for i in range(0, img_str_len, img_width):
+        img += img_str[i:i+img_width] + '\n'
 
-    return ascii_img
+    return img
 
 def main():
     """main"""
@@ -82,20 +82,20 @@ def main():
 
     if args['--ASCII']:
         print('image is ASCIIfied')
-        ascii_str = imgmanip.pixel_to_ascii(greyscale_image, monospace_flag)
-    
+        ascii_str = imgmanip.pixle_to_ascii(greyscale_image)
+        img_str = parse_img_str(greyscale_image.width, ascii_str)
+
     if args['--braille']:
         print('image is brailleified')
-        ascii_str = imgmanip.pixle_to_braille(greyscale_image, monospace_flag)
+        braille_str = imgmanip.pixle_to_braille(greyscale_image, monospace_flag)
+        img_str = parse_img_str(greyscale_image.width//2, braille_str)
 
     if args['--output']:
         print('Desination path', args['--output'])
         out_file_flag = True
     
-    ascii_img = parse_ascii_str(greyscale_image.width, ascii_str)
-
     #Write the converted image to stdio or file
-    write(args['--output'], out_file_flag, ascii_img)
+    write(args['--output'], out_file_flag, img_str)
 
 if __name__ == '__main__':
     main()
