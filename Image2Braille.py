@@ -1,7 +1,8 @@
 """Converts an image to Braille unicode
 
 Usage:
-    Image2Braille (<srcimg>) [options] ((-a | --ASCII) | (-b | --braille))
+    Image2Braille (<srcimg>) [options] (-b | --braille)
+    Image2Braille (<srcimg>) [--output=<File> --resize=<size>] (-a | --ASCII)
     Image2Braille -h | --help
     Image2Braille -v | --version
 
@@ -19,10 +20,9 @@ Options:
 """
 
 import image_manip as imgmanip
-import os
 from docopt import docopt
 from PIL import Image
-from schema import Schema, And, Or, Use, SchemaError
+from schema import Schema, Or, Use, SchemaError
 
 def write(file, file_bool, char_string):
     if file_bool:
