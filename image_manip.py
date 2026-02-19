@@ -7,6 +7,7 @@ import pixle_data_matrix as PD
 
 ASCII_CHARS = ["@", "#", "$", "%", "?", "*", "+", ";", ":", ",", "."]
 pixle_OBJECT_LIST = []
+pixle_LIST = []
 pixle_HASH_LIST = []
 
 def resize(image, new_width=200):
@@ -60,27 +61,13 @@ def pixle_to_braille(image, mono_flag):
 
     return ascii_str
 
-
 def pixle_to_ascii(image):
-    """Converts a pixle matrix to ASCII_CHARS"""
-    extract_pixledata_matrix(image)
+    """Converts a pixles to ASCII_CHARS"""
+
+    pixles = list(image.getdata())
 
     ascii_str = ""
-    for pixle_object in pixle_OBJECT_LIST:
-        pixle_HASH_LIST.append(pixle_object.calc_ascii(25))
-
-
-    for i in range(0, len(pixle_HASH_LIST), image.width):
-        for j in range(i, i + image.width):
-            ascii_str += ASCII_CHARS[pixle_HASH_LIST[j][0]]
-            ascii_str += ASCII_CHARS[pixle_HASH_LIST[j][1]]
-
-        for j in range(i, i + image.width):
-            ascii_str += ASCII_CHARS[pixle_HASH_LIST[j][2]]
-            ascii_str += ASCII_CHARS[pixle_HASH_LIST[j][3]]
-
-        for j in range(i, i + image.width):
-            ascii_str += ASCII_CHARS[pixle_HASH_LIST[j][4]]
-            ascii_str += ASCII_CHARS[pixle_HASH_LIST[j][5]]
+    for pixle in pixles:
+        ascii_str += ASCII_CHARS[pixle // 25]
 
     return ascii_str

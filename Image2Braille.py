@@ -1,7 +1,7 @@
 """Converts an image to Braille unicode
 
 Usage:
-    Image2Braille (<srcimg>) [options] (-b | --braille)
+    Image2Braille (<srcimg>) [--output=<File> --resize=<size> --monospace] (-b | --braille)
     Image2Braille (<srcimg>) [--output=<File> --resize=<size>] (-a | --ASCII)
     Image2Braille -h | --help
     Image2Braille -v | --version
