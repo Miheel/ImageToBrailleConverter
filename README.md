@@ -1,12 +1,13 @@
 # ImageToBrailleConverter
 
-**A simple image converter in Python, converts an image to braille unicode.**
+**A simple image converter in Python, converts an image to ASCII char or braille unicode.**
 
 ## Usage
 
 ```
 Usage:
-    Image2Braille (<srcimg>) [options] ((-a | --ASCII) | (-b | --braille))
+    Image2Braille (<srcimg>) [--output=<File> --resize=<size> --monospace] (-b | --braille)
+    Image2Braille (<srcimg>) [--output=<File> --resize=<size>] (-a | --ASCII)
     Image2Braille -h | --help
     Image2Braille -v | --version
 
@@ -101,4 +102,4 @@ Options:
 
 - [x] monospacing
 - [x] commandline args
-- [ ] remake to_ASCII
+- [x] remake to_ASCII
